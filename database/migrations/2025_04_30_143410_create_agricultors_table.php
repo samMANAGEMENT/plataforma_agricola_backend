@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('cantidad');
             $table->string('ubicacion_lat');
             $table->string('ubicacion_lon');
+            $table->foreignId('tipo_id')->constrained('tipos');
             $table->timestamps();
         });
     }

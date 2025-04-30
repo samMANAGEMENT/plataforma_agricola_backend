@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('tipo_vehiculo');
             $table->string('capacidad_kg');
             $table->string('placa_vehiculo');
+            $table->foreignId('tipo_id')->constrained('tipos');
             $table->timestamps();
         });
     }

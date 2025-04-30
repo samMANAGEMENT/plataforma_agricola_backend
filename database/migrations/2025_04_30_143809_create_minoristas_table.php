@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('tipo_negocio');
             $table->string('rut');
             $table->string('nombre_negocio');
+            $table->foreignId('tipo_id')->constrained('tipos');
             $table->timestamps();
         });
     }

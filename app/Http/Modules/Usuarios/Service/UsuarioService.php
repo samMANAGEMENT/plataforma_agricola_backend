@@ -12,51 +12,37 @@ class UsuarioService
      * Registro de usuario
      *
      * @param Request $request
-     * @return array
+     * @return bool
      * @author samm <sapinedal@outlook.com>
      * 
      **/ 
-    public function register($data)
+    public function register(array $data)
     {
+
+        $data['password'] = Hash::make($data['password']);
+
         // Crear usuario
-        $user = Usuario::create([
-            'nombre' => $data->nombre,
-            'email' => $data->email,
-            'password' => Hash::make($data->password),
-        ]);
+        $user = Usuario::create($data);
 
-        // Crear token
-        $tokenResult = $user->createToken('auth_token');
-
-        $plainTextToken = explode('|', $tokenResult->plainTextToken)[1];
-
-        return [
-            'access_token' => $plainTextToken,
-            'token_type' => 'Bearer',
-        ];
+        return true;
     }
+
+
     /**
      * Login de usuario
      *
-     * @param Request $request
+     * @param array $request
      * @return 
      * @author samm <sapindal@outlook.com>
      */
-
-    public function login(Request $request)
+    public function login(array $request)
     {
-        // Validar inputs
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
         // Buscar usuario
-        $user = Usuario::where('email', $request->email)->first();
+        $user = Usuario::where('email', $request['email'])->first();
 
         // Verificar existencia y contraseña
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Credenciales inválidas.'], 401);
+        if (!$user || !Hash::check($request['password'], $user->password)) {
+            throw new \Exception("Credenciales inválidas.", 1);
         }
 
         // Crear token
@@ -66,9 +52,9 @@ class UsuarioService
         $plainTextToken = explode('|', $tokenResult->plainTextToken)[1];
 
         // Responder
-        return response()->json([
+        return [
             'access_token' => $plainTextToken,
             'token_type' => 'Bearer',
-        ]);
+        ];
     }
 }
