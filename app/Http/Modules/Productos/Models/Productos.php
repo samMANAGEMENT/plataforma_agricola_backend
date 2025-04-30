@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Modules\Productos\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Postulaciones extends Model
+class Productos extends Model
 {
     use HasFactory;
 }

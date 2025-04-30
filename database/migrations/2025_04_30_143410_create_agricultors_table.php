@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detalle_orden_tables', function (Blueprint $table) {
+        Schema::create('agricultores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('orden_id')->constrained('ordenes');
-            $table->foreignId('producto_id')->constrained('productos');
-            $table->decimal('cantidad', 10, );
-            $table->decimal('precio_unitario', 10, 3);
-            $table->decimal('subtotal', 10, 3);
+            $table->string('certificacion_organica');
+            $table->integer('cantidad');
+            $table->string('ubicacion_lat');
+            $table->string('ubicacion_lon');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detalle_orden_tables');
+        Schema::dropIfExists('agricultores');
     }
 };

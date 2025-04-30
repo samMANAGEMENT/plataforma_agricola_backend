@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('productos', function (Blueprint $table) {
+        Schema::create('ordenes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('usuarios');
-            $table->string('nombre');
-            $table->enum('tipo', ['fruta', 'verdura', 'granos', 'otros']);
-            $table->decimal('precio_por_kg', 10, 3);
-            $table->decimal('cantidad_disponible', 10,);
-            $table->date('fecha_cosecha');
-            $table->text('descripcion')->nullable();
-            $table->string('imagen_url', 255)->nullable();
+            $table->foreignId('estado_id')->constrained('estados');
+            $table->string('direccion_entrega');
+            $table->integer('total');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('productos');
+        Schema::dropIfExists('ordenes');
     }
 };

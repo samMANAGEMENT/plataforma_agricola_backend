@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('postulaciones', function (Blueprint $table) {
+        Schema::create('empleos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('empleo_id')->constrained('empleos');
             $table->foreignId('user_id')->constrained('usuarios');
-            $table->dateTime('fecha_postulacion');
-            $table->enum('estado', ['pendiente', 'aceptada', 'rechazada']);
-            $table->text('mensaje')->nullable();
+            $table->string('titulo');
+            $table->string('descripcion');
+            $table->string('tipo_trabajo');
+            $table->dateTime('fecha_inicio');
+            $table->dateTime('fecha_fin');
+            $table->string('pago_por_dia');
+            $table->foreignId('estado_id')->constrained('estados');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('postulaciones');
+        Schema::dropIfExists('empleos');
     }
 };

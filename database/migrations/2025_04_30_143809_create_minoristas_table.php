@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('empleos', function (Blueprint $table) {
+        Schema::create('minoristas', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->text('descripcion');
-            $table->enum('estado', ['abierto', 'cerrado']);
+            $table->string('tipo_negocio');
+            $table->string('rut');
+            $table->string('nombre_negocio');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('empleos');
+        Schema::dropIfExists('minoristas');
     }
 };
