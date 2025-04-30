@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ordenes', function (Blueprint $table) {
+        Schema::create('transportes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('orden_id')->constrained('ordenes');
             $table->foreignId('user_id')->constrained('usuarios');
-            $table->dateTime('fecha_creacion');
-            $table->enum('estado', ['pendiente', 'procesando', 'completado', 'cancelado']);
-            $table->text('direccion_entrega');
-            $table->decimal('total', 10, 3);
+            $table->dateTime('fecha_asignacion');
+            $table->foreignId('estado_id')->constrained('estados');
+            $table->string('costo_transporte');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ordenes');
+        Schema::dropIfExists('transportes');
     }
 };

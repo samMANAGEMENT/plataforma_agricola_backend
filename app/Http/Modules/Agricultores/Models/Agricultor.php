@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Modules\Agricultores\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ordenes extends Model
+class Agricultor extends Model
 {
     use HasFactory;
 }

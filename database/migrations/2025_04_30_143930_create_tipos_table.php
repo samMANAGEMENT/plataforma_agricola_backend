@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('minoristas', function (Blueprint $table) {
-            $table->id('minorista_id');
-            $table->string('tipo_negocio');
-            $table->string('rut', 20);
-            $table->string('nombre_negocio');
+        Schema::create('tipos', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('agricultor_id')->constrained('agricultores');
+            $table->foreignId('minorista_id')->constrained('minoristas');
+            $table->foreignId('conductores_id')->constrained('conductores');
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('minoristas');
+        Schema::dropIfExists('tipos');
     }
 };
