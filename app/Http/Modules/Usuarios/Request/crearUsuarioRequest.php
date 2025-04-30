@@ -19,7 +19,12 @@ class crearUsuarioRequest extends FormRequest
         return [
             'nombre' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:usuarios',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
+            'dni' => 'required',
+            'telefono' => 'nullable',
+            'direccion' => 'nullable|string|max:255',
+            'tipo_id' => 'required',
+            'estado' => 'nullable|boolean',
         ];
     }
 

@@ -11,11 +11,18 @@ class Usuario extends Authenticatable
 
     protected $fillable = [
         'nombre',
+        'dni',
+        'telefono',
+        'direccion',
         'email',
+        'tipo_id',
+        'estado',
         'password',
     ];
 
     protected $hidden = [
         'password',
     ];
+
+
 }
