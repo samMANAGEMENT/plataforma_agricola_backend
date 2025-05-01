@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Minoristas extends Model
 {
     use HasFactory;
+
+    protected $filleable = [
+        'tipo_negocio',
+        'rut',
+        'nombre_negocio',
+        'tipo_id'
+    ];
 }
