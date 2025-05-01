@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('tipos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('agricultor_id')->constrained('agricultores');
-            $table->foreignId('minorista_id')->constrained('minoristas');
-            $table->foreignId('conductores_id')->constrained('conductores');
+            $table->string('nombre');
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Modules\Usuarios\Models\Usuario;
 use App\Http\Modules\Usuarios\Request\crearUsuarioRequest;
+use App\Http\Modules\Usuarios\Request\loguearUsuarioRequest;
 use App\Http\Modules\Usuarios\Service\UsuarioService;
 use Illuminate\Support\Facades\Hash;
 
@@ -34,7 +35,7 @@ class UsuarioController extends Controller
     public function register(crearUsuarioRequest $request)
     {
         try {
-            $usuario = $this->usuarioService->register($request);
+            $usuario = $this->usuarioService->register($request->validated());
             return response()->json($usuario, 201);
         } catch (\Throwable $th) {
             return response()->json([
@@ -52,32 +53,16 @@ class UsuarioController extends Controller
      * @author samm <sapindal@outlook.com>
      */
 
-    public function login(Request $request)
+    public function login(loguearUsuarioRequest $request)
     {
-        // Validar inputs
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        // Buscar usuario
-        $user = Usuario::where('email', $request->email)->first();
-
-        // Verificar existencia y contraseña
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Credenciales inválidas.'], 401);
+        try {
+            $usuario = $this->usuarioService->login($request->validated());
+            return response()->json($usuario, 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Error al loguear el usuario.',
+                'error' => $th->getMessage()
+            ], 500);
         }
-
-        // Crear token
-        $tokenResult = $user->createToken('auth_token');
-
-        // Obtener solo el token limpio (sin ID adelante)
-        $plainTextToken = explode('|', $tokenResult->plainTextToken)[1];
-
-        // Responder
-        return response()->json([
-            'access_token' => $plainTextToken,
-            'token_type' => 'Bearer',
-        ]);
     }
 }
