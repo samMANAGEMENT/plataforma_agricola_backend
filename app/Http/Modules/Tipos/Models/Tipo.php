@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tipo extends Model
 {
     use HasFactory;
+
+    protected $filleable = [
+        'nombre'
+    ];
 }
