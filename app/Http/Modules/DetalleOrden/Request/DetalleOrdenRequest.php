@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Modules\Usuarios\Request;
+namespace App\Http\Modules\DetalleOrden\Request;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class crearUsuarioRequest extends FormRequest
+class DetalleOrdenRequest extends FormRequest
 {
 
     public function authorize(): bool
@@ -17,14 +17,11 @@ class crearUsuarioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|string|max:255',
-            'dni' => 'required',
-            'telefono' => 'nullable',
-            'direccion' => 'nullable|string|max:255',
-            'email' => 'required|string|email|max:255|unique:usuarios',
-            'tipo_id' => 'required',
-            'estado' => 'nullable|boolean',
-            'password' => 'required|string|min:8'
+            'orden_id' => 'required',
+            'producto_id' => 'required',
+            'cantidad' => 'required|integer|min:1',
+            'precio_unitario' => 'required|numeric|min:0',
+            'subtotal' => 'required|numeric|min:0'
         ];
     }
 

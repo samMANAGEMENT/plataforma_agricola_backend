@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Modules\Usuarios\Request;
+namespace App\Http\Modules\Minoristas\Request;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class crearUsuarioRequest extends FormRequest
+class MinoristaRequest extends FormRequest
 {
 
     public function authorize(): bool
@@ -17,14 +17,10 @@ class crearUsuarioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|string|max:255',
-            'dni' => 'required',
-            'telefono' => 'nullable',
-            'direccion' => 'nullable|string|max:255',
-            'email' => 'required|string|email|max:255|unique:usuarios',
-            'tipo_id' => 'required',
-            'estado' => 'nullable|boolean',
-            'password' => 'required|string|min:8'
+            'tipo_negocio' => 'required|string|max:1000',
+            'rut' => 'required|string|max:255|unique:minoristas,rut',
+            'nombre_negocio' => 'required|string|max:255',
+            'tipo_id' => 'required'
         ];
     }
 

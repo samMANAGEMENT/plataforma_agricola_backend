@@ -1,66 +1,53 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Funcionalidad de la plataforma 
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Esta plataforma esta diseñada para conectar el campo con las empresas, facilitando la venta directa de productos agrícolas y ofreciendo oportunidades de empleo en el sector rural. Este software busca eliminar intermediarios innecesarios y generar un ecosistema digital donde agricultores, trabajadores rurales, transportistas y compradores puedan interactuar de forma segura y eficiente.
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Características Principales
+1. Registro de usuarios. Todos los usuarios deben registrarse para acceder a las funcionalidades del sistema. Los tipos de usuarios incluyen:
+	• Vendedores (agricultores/productores)
+	• Compradores (empresas o personas)
+	• Conductores (transportistas)
+	• Trabajadores rurales (personas que buscan empleo)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. Perfiles personalizados. Cada usuario tendrá un perfil donde podrá gestionar su información, historial, productos o servicios ofrecidos, postulaciones, y más.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. Sistema de venta de productos. Los vendedores pueden publicar sus productos agrícolas con imágenes, precios, cantidades disponibles y descripciones.
 
-## Learning Laravel
+4. Postulación a trabajos. Los agricultores o empresas pueden publicar ofertas de empleo (cosecha, siembra, cargue, entre otros), y los usuarios interesados pueden postularse directamente desde la plataforma.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+5. Gestión de transporte. Los conductores pueden registrarse para ofrecer servicios de transporte, y los vendedores pueden contactarlos para entregar mercancía a los compradores.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+6. Sistema de pago y comisiones
+	• A los vendedores se les cobrará una suscripción mensual y un porcentaje por cada venta realizada.
+	• Los compradores, trabajadores y conductores podrán utilizar el sistema sin costo, fomentando la participación activa y el crecimiento de la red.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Modelo de Negocio
 
-## Laravel Sponsors
+El modelo de monetización está basado en
+	• Suscripción mensual para vendedores.
+	• Cobro de comisión por venta realizada.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Especificaciones del Proyecto
 
-### Premium Partners
+Herramientas y Versiones
+ 
+	• Versión de Visual Studio Code: 
+	• Versión de laravel: 
+	• Versión de XAMPP: 
+	• Versión de php: 
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Aplicaciones necesarias para ejecutar el proyecto
+	• Editor de código: Se recomienda utilizar un editor de código de preferencia como Visual Studio Code.
+	• XAMPP: Descargar XAMPP.
+	
+Pasos para ejecutar el proyecto
 
-## Contributing
+1) Clonar el repositorio. Abre la terminal en la ubicación que desees clonar el repositorio y ejecuta el siguiente comando: git clone https://github.com/samMANAGEMENT/plataforma_agricola_backend.git
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2) Instalar dependencias del proyecto. Una vez que tengas el proyecto abierto en tu editor de código, ejecuta el siguiente comando en la terminal para descargar todas las librerías necesarias: composer install
+ 
+3) Abrir el proyecto en Visual Studio Code. Si aún no lo has hecho, abre Visual Studio Code desde la terminal con el siguiente comando: code .
+Esto abrirá el proyecto en el editor.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4) Configurar la conexión a la base de datos. Abre el archivo .env.example y verifica los valores de la configuración de la base de datos. Asegúrate de que las credenciales sean las correctas.
