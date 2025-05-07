@@ -19,5 +19,6 @@ Route::post('/register', [UsuarioController::class, 'register']);
 Route::post('/login', [UsuarioController::class, 'login']);
 
 Route::middleware('auth:sanctum')->get('/ping', function (Request $request) {
-    return 'pong';
+
+require __DIR__ . '/empleos/empleos.php';
 });
