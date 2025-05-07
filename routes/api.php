@@ -25,4 +25,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Módulo de empleos
     require __DIR__ . '/empleos/empleos.php';
+    // Módulo de estados
+    require __DIR__ . '/estados/estados.php';
 });
