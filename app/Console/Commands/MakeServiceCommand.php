@@ -52,7 +52,7 @@ namespace {$namespace};
 
 class {$class}
 {
-    // Aquí va tu magia del servicio 🪄
+    // Desde Aquí se inicia la logica @samM
 }
 
 PHP;
