@@ -1,24 +1,28 @@
 <?php
 
 use App\Http\Modules\Usuarios\Controller\UsuarioController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
+| Aquí es donde registras las rutas API de tu aplicación.
+| Estas rutas están agrupadas bajo el middleware 'api' por defecto.
 */
 
-Route::post('/register', [UsuarioController::class, 'register']);
-Route::post('/login', [UsuarioController::class, 'login']);
+// Rutas públicas
+Route::prefix('auth')->group(function () {
+    Route::post('register', [UsuarioController::class, 'register']);
+    Route::post('login', [UsuarioController::class, 'login']);
+});
 
-Route::middleware('auth:sanctum')->get('/ping', function (Request $request) {
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('ping', function (Request $request) {
+        return response()->json(['message' => 'pong', 'user' => $request->user()]);
+    });
 
-require __DIR__ . '/empleos/empleos.php';
+    // Módulo de empleos
+    require __DIR__ . '/empleos/empleos.php';
 });
