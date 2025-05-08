@@ -2,6 +2,7 @@
 
 namespace App\Http\Modules\Usuarios\Models;
 
+use App\Http\Modules\Tipos\Models\Tipo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -24,5 +25,11 @@ class Usuario extends Authenticatable
         'password',
     ];
 
-
+    public function tipo()
+    {
+        return $this->belongsTo(Tipo::class, 'tipo_id');
+    }
 }
+
+
+
