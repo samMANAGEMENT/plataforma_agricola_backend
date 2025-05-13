@@ -12,13 +12,13 @@ class actualizarUsuarioRequest extends FormRequest
     }
 
     /**
-     * Mapea el campo 'dni' del frontend al campo 'documento' esperado en el backend.
+     * Mapea el campo 'dni' del frontend al campo 'dni' esperado en el backend.
      */
     protected function prepareForValidation(): void
     {
         if ($this->has('dni')) {
             $this->merge([
-                'documento' => $this->input('dni'),
+                'dni' => $this->input('dni'), // Mapeamos 'dni' a 'dni'
             ]);
         }
     }
@@ -29,7 +29,7 @@ class actualizarUsuarioRequest extends FormRequest
             'nombre'     => 'required|string|max:255',
             'email'      => 'required|email|max:255',
             'telefono'   => 'nullable|string|max:20',
-            'documento'  => 'required|string|max:30', // Este es el campo que ahora será llenado con 'dni'
+            'dni'        => 'required|string|max:30', // La regla ahora es para 'dni'
             'direccion'  => 'nullable|string|max:255',
             'tipo_id'    => 'nullable|integer|exists:tipos,id',
             'estado'     => 'nullable|boolean',

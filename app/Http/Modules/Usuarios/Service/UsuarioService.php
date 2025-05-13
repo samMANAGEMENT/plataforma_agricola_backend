@@ -2,8 +2,8 @@
 
 namespace App\Http\Modules\Usuarios\Service;
 
-use Illuminate\Http\Request;
 use App\Http\Modules\Usuarios\Models\Usuario;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
 
 class UsuarioService
@@ -14,8 +14,8 @@ class UsuarioService
      * @param array $data
      * @return bool
      * @author samm <sapinedal@outlook.com>
-     **/ 
-    public function register(array $data)
+     */
+    public function register(array $data): bool
     {
         $data['password'] = Hash::make($data['password']);
         Usuario::create($data);
@@ -25,15 +25,16 @@ class UsuarioService
     /**
      * Login de usuario
      *
-     * @param array $request
+     * @param array $credentials
      * @return array
+     * @throws \Exception
      * @author samm <sapindal@outlook.com>
      */
-    public function login(array $request)
+    public function login(array $credentials): array
     {
-        $user = Usuario::where('email', $request['email'])->first();
+        $user = Usuario::where('email', $credentials['email'])->first();
 
-        if (!$user || !Hash::check($request['password'], $user->password)) {
+        if (!$user || !Hash::check($credentials['password'], $user->password)) {
             throw new \Exception("Credenciales inválidas.", 1);
         }
 
@@ -47,6 +48,16 @@ class UsuarioService
     }
 
     /**
+     * Obtener todos los usuarios con su tipo.
+     *
+     * @return Collection<Usuario>
+     */
+    public function getAllUsersWithTipo(): Collection
+    {
+        return Usuario::with('tipo')->get();
+    }
+
+    /**
      * Actualizar usuario existente
      *
      * @param int $id
@@ -54,10 +65,10 @@ class UsuarioService
      * @return Usuario
      * @throws \Exception
      */
-    public function update(int $id, array $data)
+    public function update(int $id, array $data): Usuario
     {
         $usuario = Usuario::find($id);
-        
+
         if (!$usuario) {
             throw new \Exception("Usuario no encontrado", 404);
         }
@@ -77,10 +88,10 @@ class UsuarioService
      * @return bool
      * @throws \Exception
      */
-    public function delete(int $id)
+    public function delete(int $id): bool
     {
         $usuario = Usuario::find($id);
-        
+
         if (!$usuario) {
             throw new \Exception("Usuario no encontrado", 404);
         }

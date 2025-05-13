@@ -2,6 +2,7 @@
 
 use App\Http\Modules\Usuarios\Controller\UsuarioController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [UsuarioController::class, 'register']);
 Route::post('/login', [UsuarioController::class, 'login']);
 
+
+
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('ping', function (Request $request) {
         return response()->json(['message' => 'pong', 'user' => $request->user()]);
@@ -26,4 +30,9 @@ Route::middleware('auth:sanctum')->group(function () {
     require __DIR__ . '/empleos/empleos.php';
     // Módulo de estados
     require __DIR__ . '/estados/estados.php';
+
+    // mudolo listar usurios
+    require __DIR__ . '/usuarios/usuarios.php';
+    
+    
 });
