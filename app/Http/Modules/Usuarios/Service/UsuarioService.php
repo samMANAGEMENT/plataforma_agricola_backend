@@ -2,8 +2,8 @@
 
 namespace App\Http\Modules\Usuarios\Service;
 
-use Illuminate\Http\Request;
 use App\Http\Modules\Usuarios\Models\Usuario;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
 
 class UsuarioService
@@ -11,50 +11,93 @@ class UsuarioService
     /**
      * Registro de usuario
      *
-     * @param Request $request
+     * @param array $data
      * @return bool
      * @author samm <sapinedal@outlook.com>
-     * 
-     **/ 
-    public function register(array $data)
+     */
+    public function register(array $data): bool
     {
-
         $data['password'] = Hash::make($data['password']);
-
-        // Crear usuario
-        $user = Usuario::create($data);
-
+        Usuario::create($data);
         return true;
     }
-
 
     /**
      * Login de usuario
      *
-     * @param array $request
-     * @return 
+     * @param array $credentials
+     * @return array
+     * @throws \Exception
      * @author samm <sapindal@outlook.com>
      */
-    public function login(array $request)
+    public function login(array $credentials): array
     {
-        // Buscar usuario
-        $user = Usuario::where('email', $request['email'])->first();
+        $user = Usuario::where('email', $credentials['email'])->first();
 
-        // Verificar existencia y contraseña
-        if (!$user || !Hash::check($request['password'], $user->password)) {
+        if (!$user || !Hash::check($credentials['password'], $user->password)) {
             throw new \Exception("Credenciales inválidas.", 1);
         }
 
-        // Crear token
         $tokenResult = $user->createToken('auth_token');
-
-        // Obtener solo el token limpio (sin ID adelante)
         $plainTextToken = explode('|', $tokenResult->plainTextToken)[1];
 
-        // Responder
         return [
             'access_token' => $plainTextToken,
             'token_type' => 'Bearer',
         ];
+    }
+
+    /**
+     * Obtener todos los usuarios con su tipo.
+     *
+     * @return Collection<Usuario>
+     */
+    public function getAllUsersWithTipo(): Collection
+    {
+        return Usuario::with('tipo')->get();
+    }
+
+    /**
+     * Actualizar usuario existente
+     *
+     * @param int $id
+     * @param array $data
+     * @return Usuario
+     * @throws \Exception
+     */
+    public function update(int $id, array $data): Usuario
+    {
+        $usuario = Usuario::find($id);
+
+        if (!$usuario) {
+            throw new \Exception("Usuario no encontrado", 404);
+        }
+
+        if (isset($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        }
+
+        $usuario->update($data);
+        return $usuario;
+    }
+
+    /**
+     * Borrado lógico de usuario
+     *
+     * @param int $id
+     * @return bool
+     * @throws \Exception
+     */
+    public function delete(int $id): bool
+    {
+        $usuario = Usuario::find($id);
+
+        if (!$usuario) {
+            throw new \Exception("Usuario no encontrado", 404);
+        }
+
+        // Borrado lógico (actualizar estado a false/inactivo)
+        $usuario->update(['estado' => false]);
+        return true;
     }
 }
