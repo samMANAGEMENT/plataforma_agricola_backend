@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Modules\Usuarios\Request;
+namespace App\Http\Modules\Conductores\Request;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class crearUsuarioRequest extends FormRequest
+class ConductorRequest extends FormRequest
 {
 
     public function authorize(): bool
@@ -17,14 +17,11 @@ class crearUsuarioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|string|max:255',
-            'dni' => 'required',
-            'telefono' => 'nullable',
-            'direccion' => 'nullable|string|max:255',
-            'email' => 'required|string|email|max:255|unique:usuarios',
-            'tipo_id' => 'required',
-            'estado' => 'nullable|boolean',
-            'password' => 'required|string|min:8'
+            'licencia' => 'required|string|max:50|unique:conductores,licencia',
+            'tipo_vehiculo' => 'required|string|max:1000',
+            'capacidad_kg' => 'required|numeric|min:0',
+            'placa_vehiculo' => 'required|string|max:20|unique:conductores,placa_vehiculo',
+            'tipo_id' => 'required'
         ];
     }
 
