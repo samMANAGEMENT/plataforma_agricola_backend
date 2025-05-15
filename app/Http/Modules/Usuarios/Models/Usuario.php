@@ -24,5 +24,4 @@ class Usuario extends Authenticatable
         'password',
     ];
 
-
 }
